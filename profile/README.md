@@ -43,6 +43,19 @@ LOAD iceberg;
 
 …they're served from `haybarn-extensions.query.farm` and signed with the Haybarn extension key.
 
+## Build status
+
+Each row is a Haybarn repo. Each version column shows the CI for builds against that DuckDB base. We straddle versions during a rebase, so expect more than one column to be live at any given time.
+
+| Repo | Latest release | DuckDB **v1.5.2** *(current)* | DuckDB **v1.5.3** *(next)* |
+| --- | :---: | :---: | :---: |
+| [`haybarn`](https://github.com/Query-farm-haybarn/haybarn) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn/releases) | [![release CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn/haybarn-release.yml?branch=haybarn&label=release)](https://github.com/Query-farm-haybarn/haybarn/actions/workflows/haybarn-release.yml) <br> [![extensions CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn/haybarn-extensions.yml?branch=haybarn&label=extensions)](https://github.com/Query-farm-haybarn/haybarn/actions/workflows/haybarn-extensions.yml) | ![pending](https://img.shields.io/badge/-pending-lightgrey) |
+| [`haybarn-python`](https://github.com/Query-farm-haybarn/haybarn-python) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-python?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-python/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-python/haybarn-python.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-python/actions/workflows/haybarn-python.yml) | ![pending](https://img.shields.io/badge/-pending-lightgrey) |
+| [`haybarn-iceberg`](https://github.com/Query-farm-haybarn/haybarn-iceberg) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-iceberg?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-iceberg/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-iceberg/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-iceberg/actions/workflows/MainDistributionPipeline.yml) | ![pending](https://img.shields.io/badge/-pending-lightgrey) |
+| [`haybarn-ducklake`](https://github.com/Query-farm-haybarn/haybarn-ducklake) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-ducklake?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-ducklake/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-ducklake/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-ducklake/actions/workflows/MainDistributionPipeline.yml) | ![pending](https://img.shields.io/badge/-pending-lightgrey) |
+
+> Badges are live — click through for the latest run. A grey "pending" cell means we haven't started the rebase onto that base version yet.
+
 ## Design principles
 
 - **Hard fork, small patch stack.** One commit, one concern — easy to rebase onto each new DuckDB release.

@@ -78,28 +78,22 @@ scanners, `vss`, `fts`, `excel`, and more — alongside the 250+ community
 extensions. Everything is served from `haybarn-extensions.query.farm/{core,community}`
 and signed with the Haybarn extension key.
 
-## Build status
+## Releases
 
-Each row is a Haybarn repo; the CI column tracks its current build against
-**DuckDB v1.5.4**. Badges are live — click through for the latest run.
+Haybarn currently ships **`1.5.4-rc1`** — live on every registry today:
 
-| Repo | Latest release | CI (DuckDB **v1.5.4**) |
-| --- | :---: | :---: |
-| [`haybarn`](https://github.com/Query-farm-haybarn/haybarn) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn/releases) | [![release CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn/haybarn-release.yml?branch=haybarn&label=release)](https://github.com/Query-farm-haybarn/haybarn/actions/workflows/haybarn-release.yml) <br> [![extensions CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn/haybarn-extensions.yml?branch=haybarn&label=extensions)](https://github.com/Query-farm-haybarn/haybarn/actions/workflows/haybarn-extensions.yml) |
-| [`haybarn-python`](https://github.com/Query-farm-haybarn/haybarn-python) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-python?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-python/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-python/haybarn-python.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-python/actions/workflows/haybarn-python.yml) |
-| [`haybarn-rust`](https://github.com/Query-farm-haybarn/haybarn-rust) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-rust?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-rust/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-rust/haybarn-rust.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-rust/actions/workflows/haybarn-rust.yml) |
-| [`haybarn-node-neo`](https://github.com/Query-farm-haybarn/haybarn-node-neo) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-node-neo?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-node-neo/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-node-neo/haybarn-node-neo.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-node-neo/actions/workflows/haybarn-node-neo.yml) |
-| [`haybarn-jdbc`](https://github.com/Query-farm-haybarn/haybarn-jdbc) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-jdbc?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-jdbc/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-jdbc/haybarn-jdbc.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-jdbc/actions/workflows/haybarn-jdbc.yml) |
-| [`haybarn-wasm`](https://github.com/Query-farm-haybarn/haybarn-wasm) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-wasm?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-wasm/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-wasm/main.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-wasm/actions/workflows/main.yml) |
-| [`haybarn-iceberg`](https://github.com/Query-farm-haybarn/haybarn-iceberg) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-iceberg?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-iceberg/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-iceberg/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-iceberg/actions/workflows/MainDistributionPipeline.yml) |
-| [`haybarn-ducklake`](https://github.com/Query-farm-haybarn/haybarn-ducklake) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-ducklake?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-ducklake/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-ducklake/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-ducklake/actions/workflows/MainDistributionPipeline.yml) |
-| [`haybarn-delta`](https://github.com/Query-farm-haybarn/haybarn-delta) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-delta?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-delta/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-delta/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-delta/actions/workflows/MainDistributionPipeline.yml) |
-| [`haybarn-httpfs`](https://github.com/Query-farm-haybarn/haybarn-httpfs) | [![release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-httpfs?include_prereleases&display_name=tag&label=)](https://github.com/Query-farm-haybarn/haybarn-httpfs/releases) | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-httpfs/MainDistributionPipeline.yml?branch=haybarn&label=build)](https://github.com/Query-farm-haybarn/haybarn-httpfs/actions/workflows/MainDistributionPipeline.yml) |
-| [`haybarn-community-extensions`](https://github.com/Query-farm-haybarn/haybarn-community-extensions) | — | [![CI](https://img.shields.io/github/actions/workflow/status/Query-farm-haybarn/haybarn-community-extensions/build_all.yml?branch=main&label=catalog)](https://github.com/Query-farm-haybarn/haybarn-community-extensions/actions/workflows/build_all.yml) |
+| Channel | Install | Latest |
+| --- | --- | :---: |
+| CLI · npm | `npx haybarn@rc` | [![npm](https://img.shields.io/npm/v/haybarn/rc?label=)](https://www.npmjs.com/package/haybarn) |
+| CLI · PyPI | `uvx haybarn-cli==1.5.4rc1` | [![PyPI](https://img.shields.io/pypi/v/haybarn-cli?label=)](https://pypi.org/project/haybarn-cli/) |
+| Python | `pip install --pre haybarn` | [![PyPI](https://img.shields.io/pypi/v/haybarn?label=)](https://pypi.org/project/haybarn/) |
+| Rust | `cargo add haybarn -F bundled` | [![crates.io](https://img.shields.io/crates/v/haybarn?label=)](https://crates.io/crates/haybarn) |
+| Node | `npm i @haybarn/node-api@rc` | [![npm](https://img.shields.io/npm/v/@haybarn/node-api/rc?label=)](https://www.npmjs.com/package/@haybarn/node-api) |
+| JDBC | `farm.query.haybarn:haybarn_jdbc` | [![Maven Central](https://img.shields.io/badge/maven--central-1.5.4--rc1-blue)](https://central.sonatype.com/artifact/farm.query.haybarn/haybarn_jdbc) |
+| WASM | `npm i @haybarn/haybarn-wasm` | [![npm](https://img.shields.io/npm/v/@haybarn/haybarn-wasm?label=)](https://www.npmjs.com/package/@haybarn/haybarn-wasm) |
 
-> For a single live dashboard that aggregates **all** Haybarn build, release,
-> and extension-catalog runs in one place, see
-> **<https://haybarn-status.query.farm>**.
+> 🚦 **Live build, release, and extension-catalog status** for every repo — in
+> one continuously-updated dashboard: **<https://haybarn-status.query.farm>**.
 
 ## Design principles
 
@@ -118,9 +112,8 @@ Pick your barn door:
   uvx haybarn-cli==1.5.4rc1         # via PyPI — live (or `pipx run …`)
   # or grab the zip from https://github.com/Query-farm-haybarn/haybarn/releases
   ```
-- 🐍 **Python** — `import haybarn as duckdb`. (The `haybarn-cli` package is live
-  on PyPI; the `haybarn` *library* wheel publish is wired up and building green
-  per push, with the first PyPI release still in progress.)
+- 🐍 **Python** — `pip install --pre haybarn`, then `import haybarn as duckdb`.
+  Both the `haybarn` library and the packaged `haybarn-cli` are live on PyPI.
 - 🦀 **Rust** — `cargo add haybarn -F bundled` (fork of `duckdb-rs`; also
   publishes `libhaybarn-sys` and `haybarn-loadable-macros` to crates.io).
 - 🟢 **Node** — `npm install @haybarn/node-api`; drop-in for `@duckdb/node-api`
@@ -131,7 +124,7 @@ Pick your barn door:
   <dependency>
     <groupId>farm.query.haybarn</groupId>
     <artifactId>haybarn_jdbc</artifactId>
-    <version>1.5.4</version>
+    <version>1.5.4-rc1</version>
   </dependency>
   ```
 - 🌐 **WASM** — `@haybarn/haybarn-wasm` for the browser; 📱 **iOS** — native app in [`haybarn-ios`](https://github.com/Query-farm-haybarn/haybarn-ios).
@@ -209,9 +202,9 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
    import haybarn.compat   # registers `haybarn` as the `duckdb` module
    import duckdb           # now resolves to Haybarn
    ```
-5. **CI / Dockerfiles** — replace `duckdb` invocations with `haybarn`, swap
-   `pip install duckdb` for `pip install haybarn` (when the wheel publish goes
-   live; until then, install from `Query-farm-haybarn/haybarn-python`).
+5. **CI / Dockerfiles** — replace `duckdb` invocations with `haybarn`, and swap
+   `pip install duckdb` for `pip install --pre haybarn` (drop `--pre` once
+   `1.5.4` final ships).
 
 ### When *not* to switch (yet)
 

@@ -5,22 +5,29 @@
 # Haybarn
 
 **An independent derived distribution of DuckDB.**
+*Same engine. Your own signing keys, supply chain, and release cadence.*
 *Powered by DuckDB. Published by [Query Farm LLC](https://query.farm).*
 
 <img src="./assets/haybarn-banner.png" alt="A red barn full of hay bales, set against rolling green hills" width="100%" />
+
+**[Why Haybarn?](#why-haybarn) · [What's in here](#whats-in-here) · [Releases](#releases) · [Switching from DuckDB](#switching-from-duckdb) · [Live status ↗](https://haybarn-status.query.farm)**
 
 </div>
 
 ---
 
-> [!IMPORTANT]
-> **Haybarn 1.5.4 is in release-candidate phase.** Current tag is
-> `haybarn-v1.5.4-rc1`, built from **upstream DuckDB v1.5.4**. The engine,
-> on-disk format, and APIs are inherited from upstream and will not change
-> between rcs — only Haybarn's packaging, signing, and extension catalog are
-> still settling. Install snippets below pin the `rc` channel explicitly; once
-> `1.5.4` final ships, the `@rc` / `==…` suffixes go away. (`1.5.3` already
-> shipped final.)
+**Try it in ten seconds — nothing to install:**
+
+```sh
+npx haybarn@rc -c "SELECT 'hello from the barn' AS greeting;"
+```
+
+> [!NOTE]
+> Haybarn runs on the **stable, ABI-frozen DuckDB v1.5.4 engine** — your
+> `.duckdb` files and SQL work unchanged. We're in the `haybarn-v1.5.4-rc1`
+> candidate while packaging, signing, and the extension catalog settle, so the
+> install snippets below pin the `rc` channel; once `1.5.4` final ships the
+> `@rc` / `--pre` suffixes go away. (`1.5.3` already shipped final.)
 
 ## What is Haybarn?
 
@@ -30,9 +37,34 @@ We rebuild DuckDB from source into our own signed binaries and pair them with a 
 
 > *"Haybarn, powered by DuckDB."*
 
-## Why a barn?
+## Why Haybarn?
 
-Because barns are where you keep what the fields produce — sturdy, dependable, full of useful things stacked neatly out of the rain. That's how we want our distribution to feel.
+It's not a governance fork or a community split — there was no falling-out. The
+engine *is* upstream DuckDB, rebuilt under its own name so it can stand on its
+own infrastructure, signing keys, and cadence. In one line:
+
+> **Haybarn is about owning the *distribution*** — branding, a verifiable
+> extension supply chain, and release timing — **and** having a place to ship
+> engine and transport work that goes beyond upstream DuckDB today.
+> — [the maintainer, on *"What's the purpose of Haybarn?"*](https://github.com/orgs/Query-farm-haybarn/discussions/1)
+
+**A supply chain you can verify and control**
+- Every artifact is **GPG-signed** and carries a **SLSA build-provenance attestation** — verify in seconds (see [Verify what you run](#verify-what-you-run)).
+- A **single Haybarn signing trust root** and an **independent extension channel** — 250+ community extensions rebuilt and re-signed. DuckDB-signed extensions won't load in Haybarn and vice-versa: the trust boundary is *yours*, by design. Ideal for locked-down, regulated, or air-gapped environments.
+
+**Engine & transport work that outpaces upstream**
+- **HTTP/2 with real cross-thread stream multiplexing** — collapses many connections down to one.
+- **End-to-end request cancellation that reaches the wire** — a first-class engine capability, not bolted on.
+- **Server-arbitrated consistency via HTTP preconditions** — replaces fragile client-side ETag logic.
+- **Load extensions straight from `node_modules`** — npm-native distribution.
+- **Strict Postgres wire-protocol clients actually work**, with corrected catalog mappings.
+- **In the browser:** signed **WASM extensions that run OAuth** and authenticate against remote APIs from inside WebAssembly.
+
+Because Haybarn ships at its own pace yet stays **ABI- and file-format-compatible**,
+forward-porting each new DuckDB release stays cheap — and your existing databases
+and code keep working.
+
+> *Why a barn? Because barns are where you keep what the fields produce — sturdy, dependable, full of useful things stacked neatly out of the rain. That's how we want our distribution to feel.*
 
 ## What's in here
 
@@ -137,12 +169,18 @@ Checking what's currently green:
 - 🚦 **Status dashboard** — <https://haybarn-status.query.farm> aggregates
   every Haybarn workflow across every repo in one view.
 
-Every release artifact ships with a **SLSA build-provenance attestation**:
+### Verify what you run
+
+Every release artifact ships with a **SLSA build-provenance attestation** — one
+command proves it was built by Haybarn's CI from this source, untampered:
 
 ```sh
 gh attestation verify haybarn_cli-linux-amd64.zip \
   --repo Query-farm-haybarn/haybarn
 ```
+
+Binaries also carry **detached GPG signatures** (`SHA256SUMS` + `.asc`), and
+PyPI wheels are published with **PEP 740 attestations** via Trusted Publishers.
 
 ## Switching from DuckDB
 
@@ -222,6 +260,14 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
 Going back to upstream DuckDB is symmetric — the `.duckdb` file works there
 too. The only friction is re-installing extensions against the DuckDB trust
 root.
+
+## Community & contributing
+
+- 💬 **Questions & ideas** — [GitHub Discussions](https://github.com/orgs/Query-farm-haybarn/discussions). New here? Start with [*"What's the purpose of Haybarn?"*](https://github.com/orgs/Query-farm-haybarn/discussions/1).
+- 🧩 **Need an extension that isn't in the catalog yet?** Open an issue on [`haybarn-community-extensions`](https://github.com/Query-farm-haybarn/haybarn-community-extensions/issues) — requests help us prioritise the rebuild against the upstream catalog.
+- 🐛 **Bug or patch?** Every repo takes issues and PRs; the engine lives in [`haybarn`](https://github.com/Query-farm-haybarn/haybarn).
+- 🚦 **Watch it build** — live status for every repo at [haybarn-status.query.farm](https://haybarn-status.query.farm).
+- ✉️ **Reach us** — `hello@query.farm`.
 
 ## Trademark & independence
 

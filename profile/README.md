@@ -81,6 +81,7 @@ and code keep working.
 | [`haybarn-python`](https://github.com/Query-farm-haybarn/haybarn-python) | Python bindings — `import haybarn` (or `import haybarn as duckdb`). |
 | [`haybarn-rust`](https://github.com/Query-farm-haybarn/haybarn-rust) | Rust crates — `haybarn`, `libhaybarn-sys`, `haybarn-loadable-macros` (fork of `duckdb-rs`), on crates.io. |
 | [`haybarn-node-neo`](https://github.com/Query-farm-haybarn/haybarn-node-neo) | Node bindings — `@haybarn/node-api` (fork of `duckdb-node-neo`), on npm. |
+| [`haybarn-go`](https://github.com/Query-farm-haybarn/haybarn-go) | Go `database/sql` driver — `sql.Open("haybarn", …)` (fork of `duckdb-go`); links the engine via [`haybarn-go-bindings`](https://github.com/Query-farm-haybarn/haybarn-go-bindings). |
 | [`haybarn-jdbc`](https://github.com/Query-farm-haybarn/haybarn-jdbc) | JDBC driver — `farm.query.haybarn:haybarn_jdbc` (fork of `duckdb-java`), on Maven Central. |
 | [`haybarn-wasm`](https://github.com/Query-farm-haybarn/haybarn-wasm) | Haybarn compiled to WebAssembly (`@haybarn/haybarn-wasm`, React + shell packages). |
 | [`haybarn-ios`](https://github.com/Query-farm-haybarn/haybarn-ios) | Native iOS app — run SQL on local data, with a built-in Claude data agent. |
@@ -121,6 +122,7 @@ Haybarn currently ships **`1.5.4-rc1`** — live on every registry today:
 | Python | `pip install --pre haybarn` | [![PyPI](https://img.shields.io/pypi/v/haybarn?label=)](https://pypi.org/project/haybarn/) |
 | Rust | `cargo add haybarn -F bundled` | [![crates.io](https://img.shields.io/crates/v/haybarn?label=)](https://crates.io/crates/haybarn) |
 | Node | `npm i @haybarn/node-api@rc` | [![npm](https://img.shields.io/npm/v/@haybarn/node-api/rc?label=)](https://www.npmjs.com/package/@haybarn/node-api) |
+| Go | `go get github.com/Query-farm-haybarn/haybarn-go/v2` | [![Go](https://img.shields.io/github/v/tag/Query-farm-haybarn/haybarn-go?filter=v2.*&label=)](https://pkg.go.dev/github.com/Query-farm-haybarn/haybarn-go/v2) |
 | JDBC | `farm.query.haybarn:haybarn_jdbc` | [![Maven Central](https://img.shields.io/badge/maven--central-1.5.4--rc1-blue)](https://central.sonatype.com/artifact/farm.query.haybarn/haybarn_jdbc) |
 | WASM | `npm i @haybarn/haybarn-wasm` | [![npm](https://img.shields.io/npm/v/@haybarn/haybarn-wasm?label=)](https://www.npmjs.com/package/@haybarn/haybarn-wasm) |
 
@@ -150,6 +152,10 @@ Pick your barn door:
   publishes `libhaybarn-sys` and `haybarn-loadable-macros` to crates.io).
 - 🟢 **Node** — `npm install @haybarn/node-api`; drop-in for `@duckdb/node-api`
   (just swap the import source).
+- 🐹 **Go** — `go get github.com/Query-farm-haybarn/haybarn-go/v2`, then
+  `import _ "github.com/Query-farm-haybarn/haybarn-go/v2"` and
+  `sql.Open("haybarn", …)` (the `duckdb` driver name also works as a drop-in
+  alias; fork of `duckdb-go`, requires `CGO_ENABLED=1`).
 - ☕ **JDBC** — on Maven Central as `farm.query.haybarn:haybarn_jdbc`; JDBC URLs
   are `jdbc:haybarn:…` and the driver is `farm.query.haybarn.HaybarnDriver`.
   ```xml
@@ -207,6 +213,7 @@ this section is the cheat sheet for moving to Haybarn.
 | Python import | `import duckdb` | `import haybarn` (or `import haybarn as duckdb`) |
 | Python package | `duckdb` | `haybarn` (`haybarn-cli` for the packaged CLI) |
 | Node package | `@duckdb/node-api` | `@haybarn/node-api` |
+| Go module | `github.com/duckdb/duckdb-go/v2` | `github.com/Query-farm-haybarn/haybarn-go/v2` |
 | Rust crate | `duckdb` | `haybarn` (`libhaybarn-sys`, `haybarn-loadable-macros`) |
 | JDBC artifact / URL | `org.duckdb:duckdb_jdbc` · `jdbc:duckdb:` | `farm.query.haybarn:haybarn_jdbc` · `jdbc:haybarn:` |
 | Extension cache dir | `~/.duckdb/extensions/` | `~/.haybarn/extensions/` |

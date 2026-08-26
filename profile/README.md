@@ -52,9 +52,15 @@ own infrastructure, signing keys, and cadence. In one line:
 > engine and transport work that goes beyond upstream DuckDB today.
 > — [the maintainer, on *"What's the purpose of Haybarn?"*](https://github.com/orgs/Query-farm-haybarn/discussions/1)
 
+Since launching, that's shown up as **20 engine releases across four DuckDB
+versions** (v1.5.2 → v1.5.5), **300+ community extensions** rebuilt and
+signed, and native clients for six ecosystems — Python, Node, Go, Rust,
+JDBC, and ODBC — plus a WASM build for the browser. Two things make that
+worth maintaining:
+
 **A supply chain you can verify and control**
 - Every artifact is **GPG-signed** and carries a **SLSA build-provenance attestation** — verify in seconds (see [Verify what you run](#verify-what-you-run)).
-- A **single Haybarn signing trust root** and an **independent extension channel** — 250+ community extensions rebuilt and re-signed. DuckDB-signed extensions won't load in Haybarn and vice-versa: the trust boundary is *yours*, by design. Ideal for locked-down, regulated, or air-gapped environments.
+- A **single Haybarn signing trust root** and an **independent extension channel** — 300+ community extensions rebuilt and re-signed. DuckDB-signed extensions won't load in Haybarn and vice-versa: the trust boundary is *yours*, by design. Ideal for locked-down, regulated, or air-gapped environments.
 
 **Engine & transport work that outpaces upstream**
 - **HTTP/2 with real cross-thread stream multiplexing** — collapses many connections down to one.
@@ -101,7 +107,7 @@ and code keep working.
 | [`haybarn-ducklake`](https://github.com/Query-farm-haybarn/haybarn-ducklake) | DuckLake extension. |
 | [`haybarn-delta`](https://github.com/Query-farm-haybarn/haybarn-delta) | Delta Lake extension. |
 | [`haybarn-httpfs`](https://github.com/Query-farm-haybarn/haybarn-httpfs) | HTTP(S) + S3 filesystem extension. |
-| [`haybarn-community-extensions`](https://github.com/Query-farm-haybarn/haybarn-community-extensions) | The full community catalog (250+ extensions), rebuilt and Haybarn-signed. |
+| [`haybarn-community-extensions`](https://github.com/Query-farm-haybarn/haybarn-community-extensions) | The full community catalog (300+ extensions), rebuilt and Haybarn-signed. |
 
 > Plus internal CI/infra repos (`haybarn-extension-ci-tools`, `haybarn-community-extensions-sync`, `haybarn-status`, `haybarn-extension-wasm-tester`, …) that build, sign, and track everything above.
 
@@ -114,7 +120,7 @@ INSTALL h3 FROM community;          -- anything from the community catalog
 
 The core set Haybarn builds and signs includes `httpfs`, `delta`, `iceberg`,
 `ducklake`, `spatial`, `aws`, `azure`, `avro`, the `postgres`/`mysql`/`sqlite`
-scanners, `vss`, `fts`, `excel`, and more — alongside the 250+ community
+scanners, `vss`, `fts`, `excel`, and more — alongside the 300+ community
 extensions. Everything is served from `haybarn-extensions.query.farm/{core,community}`
 and signed with the Haybarn extension key. Browse the catalog and packaging
 detail (npm, PyPI, submitting your own) at
@@ -123,7 +129,8 @@ detail (npm, PyPI, submitting your own) at
 
 ## Releases
 
-Haybarn currently ships **`1.5.5-rc1`** — live on every registry today:
+Haybarn currently ships **`1.5.5-rc1`** — the 20th engine release since
+launch — live on every registry today:
 
 | Channel | Install | Latest |
 | --- | --- | :---: |
@@ -275,7 +282,7 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
 ### When *not* to switch (yet)
 
 - You need an extension that hasn't been rebuilt for Haybarn. The core set and
-  250+ community extensions are already live, but the catalog isn't 100% of
+  300+ community extensions are already live, but the catalog isn't 100% of
   upstream yet — check `Query-farm-haybarn/haybarn-community-extensions` and
   open an issue if something you need is missing.
 - You depend on OS-level code signing (Apple notarization, Windows

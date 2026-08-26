@@ -26,9 +26,10 @@ npx haybarn@rc -c "SELECT 'hello from the barn' AS greeting;"
 > Haybarn runs on the **stable, ABI-frozen DuckDB v1.5.5 engine** — your
 > `.duckdb` files and SQL work unchanged. Every registry currently carries the
 > `haybarn-v1.5.5-rc1` candidate, so the install snippets below pin the `rc` /
-> `--pre` channel. Haybarn ships continuously on that channel — each cycle's
-> last `rc` is what stays live in production until the next engine bump, so
-> don't wait for a separate "final" tag.
+> `--pre` channel. Haybarn always ships on the `rc` channel — our versioning
+> tracks DuckDB's own release cadence, so each cycle's last `rc` is what
+> stays live in production until the next DuckDB release. There's no
+> separate "final" tag to wait for.
 
 ## What is Haybarn?
 
@@ -257,8 +258,8 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
    import duckdb           # now resolves to Haybarn
    ```
 5. **CI / Dockerfiles** — replace `duckdb` invocations with `haybarn`, and swap
-   `pip install duckdb` for `pip install --pre haybarn` (drop `--pre` once a
-   final, non-`rc` release ships).
+   `pip install duckdb` for `pip install --pre haybarn` — pin `--pre` (or an
+   exact `rcN`) rather than waiting for a non-`rc` release; there isn't one.
 
 ### When *not* to switch (yet)
 

@@ -10,7 +10,7 @@
 
 <img src="./assets/haybarn-banner.png" alt="A red barn full of hay bales, set against rolling green hills" width="100%" />
 
-**[Why Haybarn?](#why-haybarn) · [What's in here](#whats-in-here) · [Releases](#releases) · [Switching from DuckDB](#switching-from-duckdb) · [Live status ↗](https://haybarn-status.query.farm)**
+**[Website ↗](https://query.farm/haybarn/) · [Why Haybarn?](#why-haybarn) · [What's in here](#whats-in-here) · [Releases](#releases) · [Switching from DuckDB](#switching-from-duckdb) · [Live status ↗](https://haybarn-status.query.farm)**
 
 </div>
 
@@ -39,6 +39,8 @@ We rebuild DuckDB from source into our own signed binaries and pair them with a 
 
 > *"Haybarn, powered by DuckDB."*
 
+See it laid out with more room to breathe at **[query.farm/haybarn](https://query.farm/haybarn/)**.
+
 ## Why Haybarn?
 
 It's not a governance fork or a community split — there was no falling-out. The
@@ -61,6 +63,8 @@ own infrastructure, signing keys, and cadence. In one line:
 - **Load extensions straight from `node_modules`** — npm-native distribution.
 - **Strict Postgres wire-protocol clients actually work**, with corrected catalog mappings.
 - **In the browser:** signed **WASM extensions that run OAuth** and authenticate against remote APIs from inside WebAssembly.
+
+Full detail on each of these: **[query.farm/haybarn/differences](https://query.farm/haybarn/differences)**.
 
 Because Haybarn ships at its own pace yet stays **ABI- and file-format-compatible**,
 forward-porting each new DuckDB release stays cheap — and your existing databases
@@ -112,7 +116,10 @@ The core set Haybarn builds and signs includes `httpfs`, `delta`, `iceberg`,
 `ducklake`, `spatial`, `aws`, `azure`, `avro`, the `postgres`/`mysql`/`sqlite`
 scanners, `vss`, `fts`, `excel`, and more — alongside the 250+ community
 extensions. Everything is served from `haybarn-extensions.query.farm/{core,community}`
-and signed with the Haybarn extension key.
+and signed with the Haybarn extension key. Browse the catalog and packaging
+detail (npm, PyPI, submitting your own) at
+**[query.farm/haybarn/extensions](https://query.farm/haybarn/extensions)** and
+**[query.farm/haybarn/community-extensions](https://query.farm/haybarn/community-extensions)**.
 
 ## Releases
 
@@ -143,7 +150,8 @@ Haybarn currently ships **`1.5.5-rc1`** — live on every registry today:
 
 ## Getting started
 
-Pick your barn door:
+Pick your barn door (full walkthrough at
+**[query.farm/haybarn/install](https://query.farm/haybarn/install)**):
 
 - 🦆 **CLI** — four ways, same binary:
   ```sh
@@ -182,7 +190,8 @@ Pick your barn door:
 Checking what's currently green:
 
 - 🚦 **Status dashboard** — <https://haybarn-status.query.farm> aggregates
-  every Haybarn workflow across every repo in one view.
+  every Haybarn workflow across every repo in one view; a per-version summary
+  also lives at [query.farm/haybarn/status](https://query.farm/haybarn/status).
 
 ### Verify what you run
 
@@ -196,11 +205,13 @@ gh attestation verify haybarn_cli-linux-amd64.zip \
 
 Binaries also carry **detached GPG signatures** (`SHA256SUMS` + `.asc`), and
 PyPI wheels are published with **PEP 740 attestations** via Trusted Publishers.
+Full signing/verification detail: **[query.farm/haybarn/security](https://query.farm/haybarn/security)**.
 
 ## Switching from DuckDB
 
 Haybarn is a *drop-in* derived distribution. If your code uses DuckDB today,
-this section is the cheat sheet for moving to Haybarn.
+this section is the cheat sheet for moving to Haybarn — the full guide lives
+at **[query.farm/haybarn/compatibility](https://query.farm/haybarn/compatibility)**.
 
 ### What stays the same
 

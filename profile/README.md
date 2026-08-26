@@ -23,11 +23,12 @@ npx haybarn@rc -c "SELECT 'hello from the barn' AS greeting;"
 ```
 
 > [!NOTE]
-> Haybarn runs on the **stable, ABI-frozen DuckDB v1.5.4 engine** — your
-> `.duckdb` files and SQL work unchanged. We're in the `haybarn-v1.5.4-rc1`
-> candidate while packaging, signing, and the extension catalog settle, so the
-> install snippets below pin the `rc` channel; once `1.5.4` final ships the
-> `@rc` / `--pre` suffixes go away. (`1.5.3` already shipped final.)
+> Haybarn runs on the **stable, ABI-frozen DuckDB v1.5.5 engine** — your
+> `.duckdb` files and SQL work unchanged. Every registry currently carries the
+> `haybarn-v1.5.5-rc1` candidate, so the install snippets below pin the `rc` /
+> `--pre` channel. Haybarn ships continuously on that channel — each cycle's
+> last `rc` is what stays live in production until the next engine bump, so
+> don't wait for a separate "final" tag.
 
 ## What is Haybarn?
 
@@ -73,6 +74,7 @@ and code keep working.
 | Repo | What it is |
 | --- | --- |
 | [`haybarn`](https://github.com/Query-farm-haybarn/haybarn) | Core fork of DuckDB. The `haybarn` CLI and `libhaybarn`. |
+| [`install`](https://github.com/Query-farm-haybarn/install) | One-line CLI installer script (`curl … \| sh`). |
 
 **Language bindings**
 
@@ -83,8 +85,8 @@ and code keep working.
 | [`haybarn-node-neo`](https://github.com/Query-farm-haybarn/haybarn-node-neo) | Node bindings — `@haybarn/node-api` (fork of `duckdb-node-neo`), on npm. |
 | [`haybarn-go`](https://github.com/Query-farm-haybarn/haybarn-go) | Go `database/sql` driver — `sql.Open("haybarn", …)` (fork of `duckdb-go`); links the engine via [`haybarn-go-bindings`](https://github.com/Query-farm-haybarn/haybarn-go-bindings). |
 | [`haybarn-jdbc`](https://github.com/Query-farm-haybarn/haybarn-jdbc) | JDBC driver — `farm.query.haybarn:haybarn_jdbc` (fork of `duckdb-java`), on Maven Central. |
+| [`haybarn-odbc`](https://github.com/Query-farm-haybarn/haybarn-odbc) | ODBC driver — `Haybarn` DSN (fork of `duckdb-odbc`). |
 | [`haybarn-wasm`](https://github.com/Query-farm-haybarn/haybarn-wasm) | Haybarn compiled to WebAssembly (`@haybarn/haybarn-wasm`, React + shell packages). |
-| [`haybarn-ios`](https://github.com/Query-farm-haybarn/haybarn-ios) | Native iOS app — run SQL on local data, with a built-in Claude data agent. |
 
 **Extension build-forks** (rebuilt against the Haybarn engine, Haybarn-signed)
 
@@ -96,7 +98,7 @@ and code keep working.
 | [`haybarn-httpfs`](https://github.com/Query-farm-haybarn/haybarn-httpfs) | HTTP(S) + S3 filesystem extension. |
 | [`haybarn-community-extensions`](https://github.com/Query-farm-haybarn/haybarn-community-extensions) | The full community catalog (250+ extensions), rebuilt and Haybarn-signed. |
 
-> Plus internal CI/infra repos (`haybarn-extension-ci-tools`, `haybarn-community-extensions-sync`, `haybarn-status`, …) that build, sign, and track everything above.
+> Plus internal CI/infra repos (`haybarn-extension-ci-tools`, `haybarn-community-extensions-sync`, `haybarn-status`, `haybarn-extension-wasm-tester`, …) that build, sign, and track everything above.
 
 Extensions install just like upstream:
 
@@ -113,17 +115,19 @@ and signed with the Haybarn extension key.
 
 ## Releases
 
-Haybarn currently ships **`1.5.4-rc1`** — live on every registry today:
+Haybarn currently ships **`1.5.5-rc1`** — live on every registry today:
 
 | Channel | Install | Latest |
 | --- | --- | :---: |
 | CLI · npm | `npx haybarn@rc` | [![npm](https://img.shields.io/npm/v/haybarn/rc?label=)](https://www.npmjs.com/package/haybarn) |
-| CLI · PyPI | `uvx haybarn-cli==1.5.4rc1` | [![PyPI](https://img.shields.io/pypi/v/haybarn-cli?label=)](https://pypi.org/project/haybarn-cli/) |
+| CLI · PyPI | `uvx haybarn-cli==1.5.5rc1` | [![PyPI](https://img.shields.io/pypi/v/haybarn-cli?label=)](https://pypi.org/project/haybarn-cli/) |
+| CLI · installer | `curl -fsSL https://query-farm-haybarn.github.io/install \| sh` | [![GitHub release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn?label=)](https://github.com/Query-farm-haybarn/haybarn/releases) |
 | Python | `pip install --pre haybarn` | [![PyPI](https://img.shields.io/pypi/v/haybarn?label=)](https://pypi.org/project/haybarn/) |
 | Rust | `cargo add haybarn -F bundled` | [![crates.io](https://img.shields.io/crates/v/haybarn?label=)](https://crates.io/crates/haybarn) |
 | Node | `npm i @haybarn/node-api@rc` | [![npm](https://img.shields.io/npm/v/@haybarn/node-api/rc?label=)](https://www.npmjs.com/package/@haybarn/node-api) |
 | Go | `go get github.com/Query-farm-haybarn/haybarn-go/v2` | [![Go](https://img.shields.io/github/v/tag/Query-farm-haybarn/haybarn-go?filter=v2.*&label=)](https://pkg.go.dev/github.com/Query-farm-haybarn/haybarn-go/v2) |
-| JDBC | `farm.query.haybarn:haybarn_jdbc` | [![Maven Central](https://img.shields.io/badge/maven--central-1.5.4--rc1-blue)](https://central.sonatype.com/artifact/farm.query.haybarn/haybarn_jdbc) |
+| JDBC | `farm.query.haybarn:haybarn_jdbc` | [![Maven Central](https://img.shields.io/badge/maven--central-1.5.5--rc1-blue)](https://central.sonatype.com/artifact/farm.query.haybarn/haybarn_jdbc) |
+| ODBC | release zip + `odbc_install.exe` | [![GitHub release](https://img.shields.io/github/v/release/Query-farm-haybarn/haybarn-odbc?label=)](https://github.com/Query-farm-haybarn/haybarn-odbc/releases) |
 | WASM | `npm i @haybarn/haybarn-wasm` | [![npm](https://img.shields.io/npm/v/@haybarn/haybarn-wasm?label=)](https://www.npmjs.com/package/@haybarn/haybarn-wasm) |
 
 > 🚦 **Live build, release, and extension-catalog status** for every repo — in
@@ -140,10 +144,11 @@ Haybarn currently ships **`1.5.4-rc1`** — live on every registry today:
 
 Pick your barn door:
 
-- 🦆 **CLI** — three ways, same binary:
+- 🦆 **CLI** — four ways, same binary:
   ```sh
   npx haybarn@rc                    # via npm
-  uvx haybarn-cli==1.5.4rc1         # via PyPI — live (or `pipx run …`)
+  uvx haybarn-cli==1.5.5rc1         # via PyPI — live (or `pipx run …`)
+  curl -fsSL https://query-farm-haybarn.github.io/install | sh   # one-line installer
   # or grab the zip from https://github.com/Query-farm-haybarn/haybarn/releases
   ```
 - 🐍 **Python** — `pip install --pre haybarn`, then `import haybarn as duckdb`.
@@ -162,10 +167,13 @@ Pick your barn door:
   <dependency>
     <groupId>farm.query.haybarn</groupId>
     <artifactId>haybarn_jdbc</artifactId>
-    <version>1.5.4-rc1</version>
+    <version>1.5.5-rc1</version>
   </dependency>
   ```
-- 🌐 **WASM** — `@haybarn/haybarn-wasm` for the browser; 📱 **iOS** — native app in [`haybarn-ios`](https://github.com/Query-farm-haybarn/haybarn-ios).
+- 🔌 **ODBC** — grab a release zip from
+  [`haybarn-odbc`](https://github.com/Query-farm-haybarn/haybarn-odbc/releases)
+  and run its installer (fork of `duckdb-odbc`); registers the `Haybarn` DSN.
+- 🌐 **WASM** — `@haybarn/haybarn-wasm` for the browser.
 - 🧊 **Extensions** — install in-engine just like upstream: `INSTALL iceberg; LOAD iceberg;`.
   Core lives at `https://haybarn-extensions.query.farm/core`, community at
   `/community` — both signed with the same Haybarn key.
@@ -196,7 +204,7 @@ this section is the cheat sheet for moving to Haybarn.
 ### What stays the same
 
 - **Your existing `.duckdb` database files just work.** Haybarn uses the same
-  on-disk format as upstream v1.5.4.
+  on-disk format as upstream v1.5.5.
 - **The C/C++ API.** `duckdb::` namespace, public headers (`duckdb.h` /
   `duckdb.hpp`), the `DUCKDB_VERSION` macro, and the `.duckdb_extension`
   suffix are all preserved. Haybarn is ABI-compatible.
@@ -216,6 +224,7 @@ this section is the cheat sheet for moving to Haybarn.
 | Go module | `github.com/duckdb/duckdb-go/v2` | `github.com/Query-farm-haybarn/haybarn-go/v2` |
 | Rust crate | `duckdb` | `haybarn` (`libhaybarn-sys`, `haybarn-loadable-macros`) |
 | JDBC artifact / URL | `org.duckdb:duckdb_jdbc` · `jdbc:duckdb:` | `farm.query.haybarn:haybarn_jdbc` · `jdbc:haybarn:` |
+| ODBC driver / DSN | `DuckDB Driver` · `DuckDB` | `Haybarn Driver` · `Haybarn` |
 | Extension cache dir | `~/.duckdb/extensions/` | `~/.haybarn/extensions/` |
 | Extension trust root | DuckDB Foundation key | A single Haybarn RSA key |
 | Extension repository | `extensions.duckdb.org` | `haybarn-extensions.query.farm/{core,community}` |
@@ -230,7 +239,7 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
 
 1. **Install the Haybarn CLI** alongside (or in place of) `duckdb`:
    ```sh
-   npx haybarn@rc   # or `uvx haybarn-cli==1.5.4rc1`
+   npx haybarn@rc   # or `uvx haybarn-cli==1.5.5rc1`
    ```
 2. **Open your existing database** with `haybarn yourdb.duckdb` — no migration,
    no schema rewrite. The file format is identical.
@@ -248,8 +257,8 @@ Haybarn catalog, open an issue on `Query-farm-haybarn/haybarn-community-extensio
    import duckdb           # now resolves to Haybarn
    ```
 5. **CI / Dockerfiles** — replace `duckdb` invocations with `haybarn`, and swap
-   `pip install duckdb` for `pip install --pre haybarn` (drop `--pre` once
-   `1.5.4` final ships).
+   `pip install duckdb` for `pip install --pre haybarn` (drop `--pre` once a
+   final, non-`rc` release ships).
 
 ### When *not* to switch (yet)
 
